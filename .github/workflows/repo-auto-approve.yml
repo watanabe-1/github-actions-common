@@ -1,0 +1,17 @@
+name: Auto Approve
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+permissions: {}
+
+jobs:
+  approve:
+    uses: $/.github/workflows/pr-auto-approve.yml
+    permissions:
+      pull-requests: write

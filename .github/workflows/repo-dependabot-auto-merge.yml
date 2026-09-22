@@ -1,0 +1,21 @@
+name: Dependabot auto merge
+
+# pull_request_target is required so the workflow can approve and enable
+# auto-merge for Dependabot PRs with a write-capable token. The called workflow
+# only acts on non-draft Dependabot PRs from branches in this repository.
+on:
+  pull_request_target: # zizmor: ignore[dangerous-triggers] Dependabot auto-merge needs write-capable PR automation.
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+permissions: {}
+
+jobs:
+  auto-merge:
+    uses: $/.github/workflows/dependabot-auto-merge.yml
+    permissions:
+      contents: write
+      pull-requests: write
