@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.1](https://github.com/watanabe-1/github-actions-common/compare/v1.0.0...v1.0.1) (2026-09-22)
+
+
+### Bug Fixes
+
+* **ci:** Update major release tag via GitHub API ([#8](https://github.com/watanabe-1/github-actions-common/issues/8)) ([6de7c92](https://github.com/watanabe-1/github-actions-common/commit/6de7c92ac283749d933b9382386b9bbd1c10d9f5))
+* **ci:** Update release-please-action SHA ([#9](https://github.com/watanabe-1/github-actions-common/issues/9)) ([a14aa56](https://github.com/watanabe-1/github-actions-common/commit/a14aa5654a5fef648e2c206c09f2c58a557a2d94))
+* **ci:** Use checkout credentials for release tag push ([#6](https://github.com/watanabe-1/github-actions-common/issues/6)) ([152d7b7](https://github.com/watanabe-1/github-actions-common/commit/152d7b7300cbddfcb38f309bfd6af9e1c159b70b))
+
 ## 1.0.0 (2026-09-22)
 
 
