@@ -96,12 +96,12 @@ jobs:
             exit 1
           fi
 
-          if ! grep -q 'specifying action "\$/.+" in invalid format because ref is missing' <<< "$output"; then
+          if ! grep -Fq 'specifying action "$/' <<< "$output" || ! grep -Fq 'in invalid format because ref is missing' <<< "$output"; then
             echo "$output"
             exit 1
           fi
 
-          if [ -n "$SELF_REUSABLE_WORKFLOW_PATH" ] && ! grep -q 'reusable workflow call "\$/.+" at "uses" is not following the format' <<< "$output"; then
+          if [ -n "$SELF_REUSABLE_WORKFLOW_PATH" ] && { ! grep -Fq 'reusable workflow call "$/' <<< "$output" || ! grep -Fq 'at "uses" is not following the format' <<< "$output"; }; then
             echo "$output"
             exit 1
           fi
