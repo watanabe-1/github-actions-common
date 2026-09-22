@@ -118,6 +118,8 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+    with:
+      fix-command: bun run check:fix
 ```
 
 ```yaml
@@ -142,6 +144,8 @@ jobs:
 
 Use the same thin-caller pattern for `pr-labeler.yml`, `renovate-auto-approve.yml`, and `dependabot-auto-merge.yml`.
 For `pull_request_target` callers, keep the trigger and dangerous-trigger rationale comment in the caller repository.
+
+`autofix.yml` executes `fix-command` as shell. Keep it as a reviewed literal in the caller workflow, and do not build it from issue, PR, branch, label, or other event data. Pass an empty string to skip the fix command.
 
 ## Renovate Preset
 
