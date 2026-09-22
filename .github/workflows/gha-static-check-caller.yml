@@ -1,0 +1,24 @@
+name: GHA static checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gha-static-check:
+    uses: $/.github/workflows/gha-static-check.yml
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write
+      actions: read
+    with:
+      actionlint-self-action-path: "$/actions/setup-toolchain"

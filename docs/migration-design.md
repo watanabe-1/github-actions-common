@@ -2,15 +2,14 @@
 
 ## Scope
 
-Compared repositories:
+Initial repositories compared while extracting the first shared workflows:
 
-- `C:\projects\ts\rpc4next`
-- `C:\projects\ts\diff2prompt`
+- `rpc4next`
+- `diff2prompt`
 
 Target common repository:
 
-- local: `C:\projects\actions\github-actions-common`
-- remote placeholder: `yourname/github-actions-common`
+- remote: `watanabe-1/github-actions-common`
 
 ## Classification
 
@@ -70,13 +69,15 @@ concurrency:
 
 jobs:
   gha-static-check:
-    uses: yourname/github-actions-common/.github/workflows/gha-static-check.yml@v1
+    uses: watanabe-1/github-actions-common/.github/workflows/gha-static-check.yml@<commit-sha>
     permissions:
       contents: read
       checks: write
       pull-requests: write
       actions: read
 ```
+
+`@v1` may be used instead when automatic backward-compatible updates are preferred over explicit SHA review.
 
 `diff2prompt` needs one extra input while it still contains a self-repository reusable workflow:
 
