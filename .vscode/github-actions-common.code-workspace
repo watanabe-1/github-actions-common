@@ -1,0 +1,57 @@
+{
+  "folders": [
+    {
+      "path": "../",
+    },
+  ],
+  "settings": {
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.lineNumbers": "on",
+    "editor.rulers": [80],
+    "editor.wordWrap": "on",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.oxc": "always",
+    },
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "[javascript]": {
+      "editor.defaultFormatter": "oxc.oxc-vscode",
+    },
+    "[json]": {
+      "editor.defaultFormatter": "oxc.oxc-vscode",
+    },
+    "[jsonc]": {
+      "editor.defaultFormatter": "oxc.oxc-vscode",
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "oxc.oxc-vscode",
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "oxc.oxc-vscode",
+    },
+    "[html]": {
+      "editor.defaultFormatter": "oxc.oxc-vscode",
+    },
+    "[markdown]": {
+      "editor.defaultFormatter": "oxc.oxc-vscode",
+    },
+    "markuplint.enable": true,
+    "js/ts.tsdk.promptToUseWorkspaceVersion": true,
+    "js/ts.preferences.importModuleSpecifier": "non-relative",
+    "js/ts.updateImportsOnFileMove.enabled": "always",
+    "json.schemaDownload.enable": true,
+    "json.schemaDownload.trustedDomains": {
+      "https://docs.renovatebot.com/": true,
+    },
+    "files.insertFinalNewline": true,
+    "files.autoGuessEncoding": true,
+    "files.exclude": {
+      "**/.next": true,
+    },
+    "files.eol": "\n",
+  },
+}

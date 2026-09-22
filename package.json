@@ -1,0 +1,11 @@
+{
+  "name": "github-actions-common",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "diff2prompt": "diff2prompt"
+  },
+  "devDependencies": {
+    "diff2prompt": "^0.0.15"
+  }
+}

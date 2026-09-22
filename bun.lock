@@ -1,0 +1,15 @@
+{
+  "lockfileVersion": 2,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "github-actions-common",
+      "devDependencies": {
+        "diff2prompt": "^0.0.15",
+      },
+    },
+  },
+  "packages": {
+    "diff2prompt": ["diff2prompt@0.0.15", "", { "bin": { "diff2prompt": "dist/index.js" } }, "sha512-MK3dXzXdiTh7ljnT5N1RycvVfUHinxjY5ebV+/URn5O+NnEYwD97DxvpVfO6VjNhZIwDS7vR6rONqV8wgPU7qw=="],
+  }
+}
