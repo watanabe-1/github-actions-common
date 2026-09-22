@@ -1,0 +1,22 @@
+name: Renovate auto approve
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+      - labeled
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  approve:
+    uses: $/.github/workflows/renovate-auto-approve.yml
+    permissions:
+      pull-requests: write

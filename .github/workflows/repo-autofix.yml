@@ -1,0 +1,17 @@
+name: autofix.ci
+
+on:
+  pull_request:
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  autofix:
+    uses: $/.github/workflows/autofix.yml
+    permissions:
+      contents: write
+      pull-requests: write
