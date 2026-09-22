@@ -72,8 +72,8 @@ Use conventional commit prefixes to control version bumps:
 
 The first release is configured to start at `v1.0.0`.
 
-By default, the workflow can use `GITHUB_TOKEN`. If Release PRs must trigger the normal pull request checks, create a
-`RELEASE_PLEASE_TOKEN` secret with a suitable PAT and allow GitHub Actions to create pull requests in repository settings.
+The workflow uses the default `GITHUB_TOKEN`. Enable "Allow GitHub Actions to create and approve pull requests" in
+repository settings so Release Please can open the Release PR.
 
 ## Manual fallback
 
