@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/watanabe-1/github-actions-common/compare/v1.0.1...v1.0.2) (2026-09-22)
+
+
+### Bug Fixes
+
+* **deps:** Bump googleapis/release-please-action ([#11](https://github.com/watanabe-1/github-actions-common/issues/11)) ([7f8f97b](https://github.com/watanabe-1/github-actions-common/commit/7f8f97bae9b32e42a0d7284a17a0e8704a8714ab))
+
 ## [1.0.1](https://github.com/watanabe-1/github-actions-common/compare/v1.0.0...v1.0.1) (2026-09-22)
 
 
