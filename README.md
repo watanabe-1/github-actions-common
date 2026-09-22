@@ -5,9 +5,20 @@ Shared GitHub Actions workflows, composite actions, and configuration presets.
 ## Contents
 
 - Reusable workflows under `.github/workflows/`
+- This repository's own workflow entrypoints under `.github/workflows/repo-*.yml`
 - Composite actions under `actions/`
 - Shared Renovate presets under `renovate/`
 - Migration notes under `docs/`
+
+## Workflow Layout
+
+GitHub requires both reusable workflows and repository workflows to live directly under `.github/workflows/`.
+This repository uses filenames to keep the two roles separate:
+
+- `repo-*.yml` files are entrypoints used by this repository.
+- Other workflow files are reusable workflows intended to be called by other repositories.
+
+For example, `repo-autofix.yml` runs in this repository and calls the reusable `autofix.yml` workflow.
 
 ## Pinning and Versioning
 
@@ -66,6 +77,9 @@ If a caller repository still has self-repository reusable workflow calls, pass o
       actionlint-self-reusable-workflow-path: "$/.github/workflows/add-version-to-pr-title.yml"
 ```
 
+Use `actionlint-self-action-path: "$/.github/actions/setup-toolchain"` while the caller workflow still references the caller repository's local composite action.
+After the caller workflow migrates to this repository's shared composite action, use the default `actionlint-self-action-path: "$/actions/setup-toolchain"`.
+
 ## Setup Toolchain
 
 Composite action example:
@@ -81,6 +95,57 @@ Composite action example:
 ```
 
 The action resolves `node-version: aqua` and `bun-version: aqua` from the caller repository's `aqua/aqua.yaml`.
+
+## Shared PR Automation
+
+Caller workflows keep their own triggers and permissions, then call the shared workflow from a single job.
+
+```yaml
+name: autofix.ci
+
+on:
+  pull_request:
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  autofix:
+    uses: watanabe-1/github-actions-common/.github/workflows/autofix.yml@<commit-sha>
+    permissions:
+      contents: write
+      pull-requests: write
+    with:
+      fix-command: bun run check:fix
+```
+
+```yaml
+name: Auto Approve
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+permissions: {}
+
+jobs:
+  approve:
+    uses: watanabe-1/github-actions-common/.github/workflows/pr-auto-approve.yml@<commit-sha>
+    permissions:
+      pull-requests: write
+```
+
+Use the same thin-caller pattern for `pr-labeler.yml`, `renovate-auto-approve.yml`, and `dependabot-auto-merge.yml`.
+For `pull_request_target` callers, keep the trigger and dangerous-trigger rationale comment in the caller repository.
+
+`autofix.yml` executes `fix-command` as shell. Keep it as a reviewed literal in the caller workflow, and do not build it from issue, PR, branch, label, or other event data. Pass an empty string to skip the fix command.
 
 ## Renovate Preset
 

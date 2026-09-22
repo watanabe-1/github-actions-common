@@ -1,0 +1,32 @@
+name: Label PRs
+
+on:
+  workflow_call:
+    inputs:
+      configuration-path:
+        description: Path to the labeler configuration file in the caller repository.
+        required: false
+        type: string
+        default: .github/labeler.yml
+
+permissions: {}
+
+jobs:
+  label:
+    name: Label pull request
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
+    permissions:
+      contents: read # needed for actions/checkout
+      pull-requests: write # needed for actions/labeler to apply labels
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/labeler@bf12e9b00b37c5c0ca2b87b79b2daf7891dbda13 # v7.0.0
+        with:
+          configuration-path: ${{ inputs.configuration-path }}
