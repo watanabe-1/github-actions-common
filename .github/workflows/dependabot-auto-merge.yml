@@ -1,12 +1,18 @@
 name: Dependabot auto merge
 
 on:
-  pull_request_target: # zizmor: ignore[dangerous-triggers] Dependabot metadata only; this workflow never checks out or executes PR code.
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - ready_for_review
+  workflow_call:
+    inputs:
+      automerge-patch:
+        description: Whether semver patch updates should be approved and enrolled in auto-merge.
+        required: false
+        type: boolean
+        default: true
+      automerge-minor:
+        description: Whether semver minor updates should be approved and enrolled in auto-merge.
+        required: false
+        type: boolean
+        default: true
 
 permissions: {}
 
@@ -35,8 +41,8 @@ jobs:
 
       - name: Auto approve and enable auto-merge
         if: >-
-          steps.dependabot-metadata.outputs.update-type == 'version-update:semver-patch' ||
-          steps.dependabot-metadata.outputs.update-type == 'version-update:semver-minor'
+          (inputs.automerge-patch && steps.dependabot-metadata.outputs.update-type == 'version-update:semver-patch') ||
+          (inputs.automerge-minor && steps.dependabot-metadata.outputs.update-type == 'version-update:semver-minor')
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           UPDATE_TYPE: ${{ steps.dependabot-metadata.outputs.update-type }}

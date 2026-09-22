@@ -66,6 +66,9 @@ If a caller repository still has self-repository reusable workflow calls, pass o
       actionlint-self-reusable-workflow-path: "$/.github/workflows/add-version-to-pr-title.yml"
 ```
 
+Use `actionlint-self-action-path: "$/.github/actions/setup-toolchain"` while the caller workflow still references the caller repository's local composite action.
+After the caller workflow migrates to this repository's shared composite action, use the default `actionlint-self-action-path: "$/actions/setup-toolchain"`.
+
 ## Setup Toolchain
 
 Composite action example:
@@ -81,6 +84,53 @@ Composite action example:
 ```
 
 The action resolves `node-version: aqua` and `bun-version: aqua` from the caller repository's `aqua/aqua.yaml`.
+
+## Shared PR Automation
+
+Caller workflows keep their own triggers and permissions, then call the shared workflow from a single job.
+
+```yaml
+name: autofix.ci
+
+on:
+  pull_request:
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  autofix:
+    uses: watanabe-1/github-actions-common/.github/workflows/autofix.yml@<commit-sha>
+    permissions:
+      contents: write
+      pull-requests: write
+```
+
+```yaml
+name: Auto Approve
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+permissions: {}
+
+jobs:
+  approve:
+    uses: watanabe-1/github-actions-common/.github/workflows/pr-auto-approve.yml@<commit-sha>
+    permissions:
+      pull-requests: write
+```
+
+Use the same thin-caller pattern for `pr-labeler.yml`, `renovate-auto-approve.yml`, and `dependabot-auto-merge.yml`.
+For `pull_request_target` callers, keep the trigger and dangerous-trigger rationale comment in the caller repository.
 
 ## Renovate Preset
 
