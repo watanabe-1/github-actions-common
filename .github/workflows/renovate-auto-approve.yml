@@ -1,0 +1,53 @@
+name: Renovate auto approve
+
+on:
+  workflow_call:
+    inputs:
+      renovate-bot-login:
+        description: Renovate bot login allowed to receive automatic approval.
+        required: false
+        type: string
+        default: watanabe-1-renovate-bot[bot]
+      automerge-label:
+        description: Label required before automatic approval.
+        required: false
+        type: string
+        default: renovate-automerge
+      head-ref-prefix:
+        description: Required branch prefix for Renovate pull requests.
+        required: false
+        type: string
+        default: renovate/
+
+permissions: {}
+
+jobs:
+  approve:
+    name: Auto approve Renovate PR
+    if: >-
+      github.event.pull_request.user.login == inputs.renovate-bot-login &&
+      github.event.pull_request.user.type == 'Bot' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.base.repo.full_name == github.repository &&
+      github.event.pull_request.base.ref == github.event.repository.default_branch &&
+      startsWith(github.event.pull_request.head.ref, inputs.head-ref-prefix) &&
+      contains(github.event.pull_request.labels.*.name, inputs.automerge-label) &&
+      ! github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
+    permissions:
+      pull-requests: write # required to submit PR approval review
+    steps:
+      - name: Auto approve
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            await github.rest.pulls.createReview({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              event: "APPROVE",
+            });

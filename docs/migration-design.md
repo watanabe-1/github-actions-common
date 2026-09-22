@@ -18,8 +18,9 @@ Reusable workflow candidates:
 - `gha-static-check.yml`: nearly identical. Differences are the actionlint self-repository probe and the pinned `zizmorcore/zizmor-action` SHA. Implemented here as `.github/workflows/gha-static-check.yml`.
 - `autofix.yml`: identical in both repositories. Good next candidate, but it writes to PR branches, so migrate after read-only checks are proven.
 - `pr-auto-approve.yml` / `.yaml`: identical except filename extension. Good candidate after `gha-static-check`.
+- `renovate-auto-approve.yml`: identical in both repositories. Commonized with inputs for the Renovate bot login, required automerge label, and head branch prefix.
 - `pr-labeler.yml`: same action and trigger, but `rpc4next` has stricter top-level `permissions` and concurrency/name metadata. Can be commonized with no or minimal inputs.
-- `dependabot-auto-merge.yml`: identical and security-conscious, but uses `pull_request_target` and write permissions. Migrate later with extra care.
+- `dependabot-auto-merge.yml`: identical and security-conscious, but uses `pull_request_target` and write permissions in callers. Implemented here as a reusable workflow.
 - `renovate.yml`: identical except renovate action SHA. Commonizable, but it needs app secrets and an environment, so migrate after low-risk workflows.
 - `bun-test.yml` / `node-test.yml`: structurally similar but differ by package layout, Next.js matrix, Windows matrix, coverage conditions, smoke tests, and extra rpc4next client bundle test. Commonize later only after inputs are stable.
 
@@ -95,6 +96,7 @@ jobs:
 ```
 
 After `setup-toolchain` is migrated in caller workflows, change `actionlint-self-action-path` to `$/actions/setup-toolchain` if the probe should cover the common repository action path instead of the old local one.
+Until then, keep `actionlint-self-action-path` pointed at the caller repository's local composite action, such as `"$/.github/actions/setup-toolchain"`.
 
 ## Migration order
 
@@ -103,10 +105,11 @@ After `setup-toolchain` is migrated in caller workflows, change `actionlint-self
 3. Replace each repo's `gha-static-check.yml` with a thin caller workflow.
 4. Keep each repo's local `.github/actions/setup-toolchain` until all local workflows that reference it have moved.
 5. Migrate `autofix.yml` next, because it is identical but write-enabled.
-6. Migrate `pr-auto-approve` and `pr-labeler`.
-7. Migrate `renovate.yml` and `dependabot-auto-merge.yml` after checking app secrets, environments, and branch protection.
-8. Consider common `bun-test` / `node-test` only after the common workflow inputs are written down from real caller examples.
-9. Leave release workflows repo-local unless a repeated helper becomes obvious.
+6. Migrate `pr-auto-approve`, `renovate-auto-approve`, and `pr-labeler`.
+7. Migrate `dependabot-auto-merge.yml` after checking branch protection and repository auto-merge settings.
+8. Migrate `renovate.yml` after checking app secrets and the `renovate` environment.
+9. Consider common `bun-test` / `node-test` only after the common workflow inputs are written down from real caller examples.
+10. Leave release workflows repo-local unless a repeated helper becomes obvious.
 
 ## Remaining risks and manual work
 
