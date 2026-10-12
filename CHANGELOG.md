@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/watanabe-1/github-actions-common/compare/v1.0.2...v1.1.0) (2026-10-12)
+
+
+### Features
+
+* **ci:** Add configurable Bun install mode to autofix workflow ([#15](https://github.com/watanabe-1/github-actions-common/issues/15)) ([8387ad9](https://github.com/watanabe-1/github-actions-common/commit/8387ad95f176df6ee7f5abe4763ccdccdfa51916))
+
 ## [1.0.2](https://github.com/watanabe-1/github-actions-common/compare/v1.0.1...v1.0.2) (2026-09-22)
 
 
