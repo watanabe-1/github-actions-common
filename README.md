@@ -122,6 +122,8 @@ jobs:
       fix-command: bun run check:fix
 ```
 
+`autofix.yml` installs dependencies in the repository root before running the fix command. By default, `bun-install-mode: auto` preserves the existing behavior: Dependabot PRs run `bun install`, and other PRs run `bun install --frozen-lockfile`. Callers that intentionally let autofix update `bun.lock` can pass `bun-install-mode: update`; use `frozen` to always require the lockfile to be current, or `skip` to avoid installing.
+
 ```yaml
 name: Auto Approve
 

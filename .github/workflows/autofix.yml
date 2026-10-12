@@ -8,6 +8,11 @@ on:
         required: false
         type: string
         default: bun run check:fix
+      bun-install-mode:
+        description: Bun install mode. Use auto for existing behavior, frozen for --frozen-lockfile, update to refresh bun.lock, or skip to avoid installing.
+        required: false
+        type: string
+        default: auto
 
 permissions: {}
 
@@ -38,13 +43,32 @@ jobs:
       - name: Install dependencies
         shell: bash
         env:
+          BUN_INSTALL_MODE: ${{ inputs.bun-install-mode }}
           PR_AUTHOR: ${{ github.event.pull_request.user.login }}
         run: |
-          if [ "$PR_AUTHOR" = "dependabot[bot]" ]; then
-            bun install
-          else
-            bun install --frozen-lockfile
-          fi
+          case "$BUN_INSTALL_MODE" in
+            skip)
+              exit 0
+              ;;
+            frozen)
+              bun install --frozen-lockfile
+              ;;
+            update)
+              bun install
+              ;;
+            auto)
+              if [ "$PR_AUTHOR" = "dependabot[bot]" ]; then
+                bun install
+              else
+                bun install --frozen-lockfile
+              fi
+              ;;
+            *)
+              echo "Invalid bun-install-mode: $BUN_INSTALL_MODE" >&2
+              echo "Allowed values are: auto, frozen, update, skip" >&2
+              exit 1
+              ;;
+          esac
 
       - name: Run fix command
         if: inputs.fix-command != ''
