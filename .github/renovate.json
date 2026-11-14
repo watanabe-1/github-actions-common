@@ -6,6 +6,18 @@
   "semanticCommits": "enabled",
   "semanticCommitType": "fix",
   "semanticCommitScope": "deps",
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update GitHub CLI extensions pinned to release tags.",
+      "managerFilePatterns": ["/^\\.github/workflows/[^/]+\\.ya?ml$/", "/^README\\.md$/"],
+      "matchStrings": [
+        "gh extension install (?<depName>[\\w.-]+/gh-[\\w.-]+) --pin (?<currentValue>v?\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?)"
+      ],
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "semver"
+    }
+  ],
   "packageRules": [
     {
       "description": "Automerge patch and minor updates after required checks pass.",
