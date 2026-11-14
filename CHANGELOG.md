@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.1](https://github.com/watanabe-1/github-actions-common/compare/v1.2.0...v1.2.1) (2026-11-14)
+
+
+### Bug Fixes
+
+* **ci:** Grant Workflows write permission to Release Please ([#26](https://github.com/watanabe-1/github-actions-common/issues/26)) ([510aea9](https://github.com/watanabe-1/github-actions-common/commit/510aea9f22e1692f2afacd8f618d1669e2cdf0c0))
+* **ci:** Pass Renovate App secrets to Release Please workflow ([#25](https://github.com/watanabe-1/github-actions-common/issues/25)) ([ebed426](https://github.com/watanabe-1/github-actions-common/commit/ebed4266f580873f54a6491dfcf749e4f1659cc2))
+
 ## [1.2.0](https://github.com/watanabe-1/github-actions-common/compare/v1.1.0...v1.2.0) (2026-11-14)
 
 
