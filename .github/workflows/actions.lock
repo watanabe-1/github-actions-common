@@ -41,7 +41,7 @@ workflows:
         - 'aquaproj/aqua-installer@v4.0.4'
         - 'oven-sh/setup-bun@v2.2.0'
     '.github/workflows/repo-release-please.yml':
-        - 'actions/checkout@v7.0.1'
+        - 'actions/create-github-app-token@v3.3.0'
         - 'googleapis/release-please-action@v5.0.0'
     '.github/workflows/repo-renovate-auto-approve.yml': []
 dependencies:

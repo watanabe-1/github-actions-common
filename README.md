@@ -62,6 +62,12 @@ uses: watanabe-1/github-actions-common/.github/workflows/gha-static-check.yml@v1
 
 `v1` is a moving major tag. It points to the latest backward-compatible v1 release. Breaking changes must use a new major tag such as `v2`.
 
+After a PR is merged into `main` and all static checks succeed, Release Please creates or
+updates a Release PR. That PR is automatically approved and enrolled in GitHub auto-merge;
+once required checks pass, Release Please publishes the release and updates its major tag.
+Use conventional commit titles (`fix:`, `feat:`, `feat!:`) to select the version bump. See the
+[release policy](docs/release-policy.md) for merge conventions and release details.
+
 Use `@v1` when automatic backward-compatible updates are preferred. Use a commit SHA when reviewability and reproducibility are more important than automatic updates.
 
 ## GHA Static Checks
