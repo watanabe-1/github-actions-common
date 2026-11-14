@@ -3,6 +3,9 @@
   "enabledManagers": ["custom.regex"],
   "extends": ["github>aquaproj/aqua-renovate-config#2.14.0", "group:allNonMajor"],
   "minimumReleaseAge": "7 days",
+  "semanticCommits": "enabled",
+  "semanticCommitType": "fix",
+  "semanticCommitScope": "deps",
   "packageRules": [
     {
       "description": "Automerge patch and minor updates after required checks pass.",
