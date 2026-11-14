@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3](https://github.com/watanabe-1/github-actions-common/compare/v1.2.2...v1.2.3) (2026-11-14)
+
+
+### Bug Fixes
+
+* **ci:** Use REST API for reliable Release PR discovery ([#30](https://github.com/watanabe-1/github-actions-common/issues/30)) ([c73f533](https://github.com/watanabe-1/github-actions-common/commit/c73f533fe7f569003b54eb52e7c7637b888ed957))
+
 ## [1.2.2](https://github.com/watanabe-1/github-actions-common/compare/v1.2.1...v1.2.2) (2026-11-14)
 
 
