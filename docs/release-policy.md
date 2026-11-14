@@ -61,7 +61,8 @@ Main runs are not cancelled during release processing.
 
 When unreleased conventional commits exist, it creates or updates a Release PR.
 
-The workflow finds the Release PR by its exact branch (`release-please--branches--main`),
+The workflow finds the Release PR by its exact branch
+(`release-please--branches--main--components--github-actions-common`),
 base branch, GitHub App author, and `autorelease: pending` label. The separate
 `github-actions[bot]` identity approves it, then the app enables GitHub auto-merge
 with squash merging and an expected head SHA. GitHub waits for the repository's

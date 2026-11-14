@@ -54,10 +54,12 @@ jobs:
         run: |
           set -euo pipefail
           # Query even if Release Please left an existing PR unchanged, so retries work.
-          read -r number sha <<< "$(gh pr list \
-            --state open --base main --head release-please--branches--main \
+          release_pr="$(gh pr list \
+            --state open --base main \
+            --head release-please--branches--main--components--github-actions-common \
             --author "$APP_BOT" --label 'autorelease: pending' --limit 1 \
             --json number,headRefOid --jq '.[] | [.number, .headRefOid] | @tsv')"
+          read -r number sha <<< "$release_pr"
           echo "number=$number" >> "$GITHUB_OUTPUT"
           echo "sha=$sha" >> "$GITHUB_OUTPUT"
 
