@@ -23,10 +23,10 @@ jobs:
       contents: read # needed for actions/checkout
       pull-requests: write # needed for actions/labeler to apply labels
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
 
-      - uses: actions/labeler@bf12e9b00b37c5c0ca2b87b79b2daf7891dbda13 # v7.0.0
+      - uses: actions/labeler@v7.0.0
         with:
           configuration-path: ${{ inputs.configuration-path }}

@@ -37,7 +37,7 @@ jobs:
       pull-requests: write # Required to publish actionlint results as PR review comments.
     steps:
       - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
 
@@ -136,7 +136,7 @@ jobs:
       actions: read # Required so zizmor can read workflow/action metadata during analysis.
     steps:
       - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
 
@@ -144,7 +144,7 @@ jobs:
       # its release notes state Docker image use is "fully hash-checked internally".
       # See: https://github.com/zizmorcore/zizmor-action/releases/tag/v0.4.0
       - name: Run zizmor
-        uses: zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1
+        uses: zizmorcore/zizmor-action@v0.8.1
         with:
           advanced-security: ${{ inputs.zizmor-advanced-security }}
           annotations: ${{ inputs.zizmor-annotations }}
@@ -161,7 +161,7 @@ jobs:
       pull-requests: write # Required to create/update PR comments.
     steps:
       - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
 

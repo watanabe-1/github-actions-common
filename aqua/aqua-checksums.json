@@ -1,6 +1,36 @@
 {
   "checksums": [
     {
+      "id": "github_release/github.com/cli/cli/v2.104.0/gh_2.104.0_linux_amd64.tar.gz",
+      "checksum": "98CB101AD87DBBD3F6B2F2BFCBD43197CCD07643140121D8A9CFAA91EADBC24E",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/cli/cli/v2.104.0/gh_2.104.0_linux_arm64.tar.gz",
+      "checksum": "CB34CEFC6F4E77B90731374A2B737516BB8F3033C6CA46AA949E5344F68069E3",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/cli/cli/v2.104.0/gh_2.104.0_macOS_amd64.zip",
+      "checksum": "A8C2A708DBAE89DC7C05BA7B0BEAFC95BD8D09AB4A3505467B77D32EBF364DC6",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/cli/cli/v2.104.0/gh_2.104.0_macOS_arm64.zip",
+      "checksum": "23B12706219B9892E44236F988444A24ADCF29284E16B35E03BA5B863FB6EB8E",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/cli/cli/v2.104.0/gh_2.104.0_windows_amd64.zip",
+      "checksum": "08C06D10482F12C478018CD259F64ACBD5F625712CADF331AAD19BA973C879E5",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/cli/cli/v2.104.0/gh_2.104.0_windows_arm64.zip",
+      "checksum": "D56FBF5B9AD32E5985E3E7E1D8F4D28AE2994618986CD2CBA9B50AC710DFFE01",
+      "algorithm": "sha256"
+    },
+    {
       "id": "github_release/github.com/oven-sh/bun/bun-v1.4.2/bun-darwin-aarch64.zip",
       "checksum": "90987A3A16D7DB556D886AC3D551E7B6D3EDF0A1CF43ACAED622E8676BE1D12F",
       "algorithm": "sha256"
@@ -86,33 +116,33 @@
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/suzuki-shunsuke/ghalint/v1.5.6/ghalint_1.5.6_darwin_amd64.tar.gz",
-      "checksum": "D2A0E8605333068065DCF4C9B7B7A24891EDA1750AC01FB755DFBA426A390883",
+      "id": "github_release/github.com/suzuki-shunsuke/ghalint/v1.6.0/ghalint_1.6.0_darwin_amd64.tar.gz",
+      "checksum": "0B5CEDA34753D74B6FD024BA6306FA332CD03C855801430BD7CBD44A94692252",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/suzuki-shunsuke/ghalint/v1.5.6/ghalint_1.5.6_darwin_arm64.tar.gz",
-      "checksum": "1262CAC411E27B4653E6B66B7B06580EBCC2026FDD903E12E6CB0E4591639DE6",
+      "id": "github_release/github.com/suzuki-shunsuke/ghalint/v1.6.0/ghalint_1.6.0_darwin_arm64.tar.gz",
+      "checksum": "427ACB85CB6CDDA8828BF46643825B47CB46E6D2D5D3FA4F60B7BDFEE194D2C7",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/suzuki-shunsuke/ghalint/v1.5.6/ghalint_1.5.6_linux_amd64.tar.gz",
-      "checksum": "98EE0E3330DE7286F470D1E89C03FF7CE70D7A5998BA0F15969C400447BE579C",
+      "id": "github_release/github.com/suzuki-shunsuke/ghalint/v1.6.0/ghalint_1.6.0_linux_amd64.tar.gz",
+      "checksum": "EDA1AF79C1A4A31C2DE5831CD1333AD582FA6FA72015F8E9C1C4525D550C1D35",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/suzuki-shunsuke/ghalint/v1.5.6/ghalint_1.5.6_linux_arm64.tar.gz",
-      "checksum": "203A22C70B40BB161626973AD2A8DD06AEB736699FC8E03DD425DEE8FF3406E6",
+      "id": "github_release/github.com/suzuki-shunsuke/ghalint/v1.6.0/ghalint_1.6.0_linux_arm64.tar.gz",
+      "checksum": "F9D8E20A75C934D21EE6AB1967EB79FA125237EF5633C6BFD03B27999C6A6CDA",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/suzuki-shunsuke/ghalint/v1.5.6/ghalint_1.5.6_windows_amd64.zip",
-      "checksum": "109EA9B39C8E263CEF924BD3B4FE5505964204F934CA60D986F4090D01A99BA5",
+      "id": "github_release/github.com/suzuki-shunsuke/ghalint/v1.6.0/ghalint_1.6.0_windows_amd64.zip",
+      "checksum": "9119FAAB7BAD322F1FE3895DA456846D780E84CC5E98405493B8E86AE03F215F",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/suzuki-shunsuke/ghalint/v1.5.6/ghalint_1.5.6_windows_arm64.zip",
-      "checksum": "C1219CAE104EA418A1CB4E7A02526A3FAD384C0788FA3540A86B316BB074D0D8",
+      "id": "github_release/github.com/suzuki-shunsuke/ghalint/v1.6.0/ghalint_1.6.0_windows_arm64.zip",
+      "checksum": "1AC87F983A49C4E4241217EEB7BEB3B5CF9AAEDEE8D3BE7DA896232E8F39391C",
       "algorithm": "sha256"
     },
     {
@@ -146,28 +176,28 @@
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/zizmorcore/zizmor/v1.30.1/zizmor-aarch64-apple-darwin.tar.gz",
-      "checksum": "E28D22B087F9EBB8D99DA6E740D348C930F559961C7C3F12BADDA54F882195A2",
+      "id": "github_release/github.com/zizmorcore/zizmor/v1.32.0/zizmor-aarch64-apple-darwin.tar.gz",
+      "checksum": "6EFED18C4539A663FD3C851A2BE9533FD8456C4E646D9416206DA059154A0D3C",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/zizmorcore/zizmor/v1.30.1/zizmor-aarch64-unknown-linux-gnu.tar.gz",
-      "checksum": "7FF1DCE33BDD18FD2A4AFFE63BDD47EFCCCCA97B2CEC1C1863EC26E9E2647540",
+      "id": "github_release/github.com/zizmorcore/zizmor/v1.32.0/zizmor-aarch64-unknown-linux-gnu.tar.gz",
+      "checksum": "CB152B207F815116D7FA1C1EE4614F61578803351395052908095E79ADFD9FD0",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/zizmorcore/zizmor/v1.30.1/zizmor-x86_64-apple-darwin.tar.gz",
-      "checksum": "10E6B18B11EA07E515A16F0F0518C7B07527BC9977C1FD5698181CE7F3554202",
+      "id": "github_release/github.com/zizmorcore/zizmor/v1.32.0/zizmor-x86_64-apple-darwin.tar.gz",
+      "checksum": "6983143C719ADA6845A69CC4DD2BACC215F971662FECD8BBD2678388E5CE5969",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/zizmorcore/zizmor/v1.30.1/zizmor-x86_64-pc-windows-msvc.zip",
-      "checksum": "B183B1E996EDDFAB9659F1E9B46E059F1EF1CF984A1F14E5DA09F7876A4B3A1C",
+      "id": "github_release/github.com/zizmorcore/zizmor/v1.32.0/zizmor-x86_64-pc-windows-msvc.zip",
+      "checksum": "D284A16E09D9DF4CE2C000357E7B59BD531BE093BEA5718A1CE225B449B59D49",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/zizmorcore/zizmor/v1.30.1/zizmor-x86_64-unknown-linux-gnu.tar.gz",
-      "checksum": "E65324F4430C2717591937EDCEC90CCBEFAF14C174F8EC9415E03CA875B46E1A",
+      "id": "github_release/github.com/zizmorcore/zizmor/v1.32.0/zizmor-x86_64-unknown-linux-gnu.tar.gz",
+      "checksum": "BB110CC765ECA9CD7EFB2E284A956BE5974C60027B0970F16397D86208A9957B",
       "algorithm": "sha256"
     },
     {
