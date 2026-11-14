@@ -13,6 +13,11 @@ on:
         required: false
         type: string
         default: auto
+      update-actions-lock:
+        description: Regenerate .github/workflows/actions.lock after running the fix command.
+        required: false
+        type: boolean
+        default: false
 
 permissions: {}
 
@@ -78,6 +83,18 @@ jobs:
         run: |
           set -euo pipefail
           bash -euo pipefail -c "$FIX_COMMAND"
+
+      - name: Install actions-lock
+        if: inputs.update-actions-lock
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh extension install github/gh-actions-lock --pin v0.4.1
+
+      - name: Update Actions lockfile
+        if: inputs.update-actions-lock
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh actions-lock --no-interactive
 
       - name: Run autofix.ci
         uses: autofix-ci/action@v1.3.4
