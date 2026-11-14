@@ -17,3 +17,4 @@ jobs:
       pull-requests: write
     with:
       fix-command: ""
+      update-actions-lock: true

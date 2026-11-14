@@ -27,6 +27,10 @@ workflows:
         - 'actions/labeler@v7.0.0'
     '.github/workflows/renovate-auto-approve.yml':
         - 'actions/github-script@v9.0.0'
+    '.github/workflows/renovate.yml':
+        - 'actions/checkout@v7.0.1'
+        - 'actions/create-github-app-token@v3.3.0'
+        - 'renovatebot/github-action@v46.3.12'
     '.github/workflows/repo-auto-approve.yml': []
     '.github/workflows/repo-autofix.yml': []
     '.github/workflows/repo-dependabot-auto-merge.yml': []
@@ -51,6 +55,11 @@ dependencies:
         commit: 'sha1-3d3c42e5aac5ba805825da76410c181273ba90b1'
         owner_id: 44036562
         repo_id: 197814629
+    'actions/create-github-app-token@v3.3.0':
+        ref: 'v3.3.0'
+        commit: 'sha1-64ab729a6294000f5aa4a4bc0b73d1f32bc45510'
+        owner_id: 44036562
+        repo_id: 642580244
     'actions/github-script@v9.0.0':
         ref: 'v9.0.0'
         commit: 'sha1-3a2844b7e9c422d3c10d287c895573f7108da1b3'
@@ -96,6 +105,11 @@ dependencies:
         commit: 'sha1-0c5077e51419868618aeaa5fe8019c62421857d6'
         owner_id: 108928776
         repo_id: 512644635
+    'renovatebot/github-action@v46.3.12':
+        ref: 'v46.3.12'
+        commit: 'sha1-1c0cf989c02653fba0efe7ca5772338860ca71dc'
+        owner_id: 38656520
+        repo_id: 252754603
     'zizmorcore/zizmor-action@v0.8.1':
         ref: 'v0.8.1'
         commit: 'sha1-45d7276c9ca790aabd705e31ca99c6185c3e76dd'
