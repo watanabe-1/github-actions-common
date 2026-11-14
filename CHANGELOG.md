@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.2.0](https://github.com/watanabe-1/github-actions-common/compare/v1.1.0...v1.2.0) (2026-11-14)
+
+
+### Features
+
+* **ci:** Add self-hosted Renovate workflow ([#22](https://github.com/watanabe-1/github-actions-common/issues/22)) ([0ed19c1](https://github.com/watanabe-1/github-actions-common/commit/0ed19c1fc2874cc6b3d2741cbb1c24c06360ab2c))
+* **ci:** Adopt GitHub Actions lockfile ([#20](https://github.com/watanabe-1/github-actions-common/issues/20)) ([4bf847b](https://github.com/watanabe-1/github-actions-common/commit/4bf847b2f97087c89ecf03c8aa2cbbb665494a1d))
+
+
+### Bug Fixes
+
+* **deps:** Bump zizmorcore/zizmor-action ([#17](https://github.com/watanabe-1/github-actions-common/issues/17)) ([cb272c3](https://github.com/watanabe-1/github-actions-common/commit/cb272c34e3486d879018d506d5a21f619f0739e6))
+* **deps:** Bump zizmorcore/zizmor-action ([#18](https://github.com/watanabe-1/github-actions-common/issues/18)) ([e749df9](https://github.com/watanabe-1/github-actions-common/commit/e749df9ca445b2634379618466050ae64cf32df6))
+* **deps:** Bump zizmorcore/zizmor-action ([#19](https://github.com/watanabe-1/github-actions-common/issues/19)) ([68aaedc](https://github.com/watanabe-1/github-actions-common/commit/68aaedc013ecc25ce2410adbed2d3508d5120625))
+
 ## [1.1.0](https://github.com/watanabe-1/github-actions-common/compare/v1.0.2...v1.1.0) (2026-10-12)
 
 
