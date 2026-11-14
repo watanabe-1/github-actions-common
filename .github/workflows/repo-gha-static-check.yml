@@ -10,7 +10,7 @@ permissions: {}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   actions-lock:
@@ -49,3 +49,12 @@ jobs:
       actions: read
     with:
       actionlint-self-action-path: "$/actions/setup-toolchain"
+
+  release-please:
+    name: Release Please
+    needs: [actions-lock, gha-static-check]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    uses: $/.github/workflows/repo-release-please.yml
+    permissions:
+      contents: read
+      pull-requests: write

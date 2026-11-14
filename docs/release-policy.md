@@ -54,26 +54,60 @@ Do not move immutable release tags after they are published.
 
 Releases are automated with Release Please.
 
-The `Release Please` workflow runs on each push to `main`.
+After each push to `main`, `GHA static checks` calls the repository-local
+`repo-release-please.yml` workflow only after both lockfile verification and all
+static-check jobs succeed. PR runs and manual static-check runs do not release.
+Main runs are not cancelled during release processing.
 
 When unreleased conventional commits exist, it creates or updates a Release PR.
 
-Merge the Release PR to publish a release. The workflow then:
+The workflow finds the Release PR by its exact branch (`release-please--branches--main`),
+base branch, GitHub App author, and `autorelease: pending` label. The separate
+`github-actions[bot]` identity approves it, then the app enables GitHub auto-merge
+with squash merging and an expected head SHA. GitHub waits for the repository's
+required checks and reviews; no branch protection bypass is used.
+
+When the Release PR merges, its main CI run calls Release Please again. It then:
 
 1. creates the GitHub Release
 2. creates the immutable release tag, such as `v1.0.1`
 3. force-updates the moving major tag, such as `v1`
+
+Release Please maintains `CHANGELOG.md` and `.release-please-manifest.json`.
 
 Use conventional commit prefixes to control version bumps:
 
 - `fix:` creates a patch release
 - `feat:` creates a minor release
 - `feat!:` or a `BREAKING CHANGE:` footer creates a major release
+- `perf:`, `deps:`, and `chore:` create a patch release
 
-The first release is configured to start at `v1.0.0`.
+Dependabot uses `fix(deps):`, and Renovate is explicitly configured to use the same
+format. Their merged dependency updates therefore trigger releases too. The official
+`changelog-sections` setting includes `chore` so existing `chore(deps):` and
+`chore(deps-dev):` PRs also trigger patch releases. This includes other `chore:`
+maintenance commits; it is not limited to bot authors or dependency scopes.
+An upstream dependency's major version bump alone does not imply a major release here.
+With squash merges, keep the conventional prefix in the resulting commit title.
+`docs:` and `ci:` changes alone do not normally create a release.
 
-The workflow uses the default `GITHUB_TOKEN`. Enable "Allow GitHub Actions to create and approve pull requests" in
-repository settings so Release Please can open the Release PR.
+The existing version history, currently starting from `v1.0.0`, is preserved.
+
+### Authentication and repository settings
+
+The release job reuses the existing `renovate` environment's `RENOVATE_APP_ID` and
+`RENOVATE_PRIVATE_KEY` secrets. It requests an app token limited to this repository
+with Contents, Pull requests, and Issues write permissions. Using the app for PR creation
+and merging allows Release PR checks and the post-merge main workflow to run; the default
+`GITHUB_TOKEN` would suppress those follow-up workflows.
+
+The separate default `GITHUB_TOKEN` is used only to read contents and approve the app's
+Release PR. Keep "Allow GitHub Actions to create and approve pull requests" enabled,
+along with "Allow auto-merge" and squash merging. Keep required checks configured on
+`main`; if code owner approval is required for these files, that requirement must also
+be satisfied by an eligible reviewer. The environment must permit deployments from `main`
+without manual approval to keep the flow unattended. Tag rules must permit the app to
+create immutable version tags and update moving major tags.
 
 ## Manual fallback
 

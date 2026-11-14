@@ -41,7 +41,7 @@ runs:
       if: ${{ inputs.setup-aqua == 'true' }}
       uses: aquaproj/aqua-installer@v4.0.4 # zizmor: ignore[unpinned-uses] -- pinned by the calling workflow's actions.lock
       with:
-        aqua_version: v2.63.0
+        aqua_version: v2.66.1
       env:
         AQUA_GITHUB_TOKEN: ${{ github.token }}
 
