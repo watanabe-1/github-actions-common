@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/watanabe-1/github-actions-common/compare/v1.2.1...v1.2.2) (2026-11-14)
+
+
+### Bug Fixes
+
+* **ci:** Correct Release Please PR branch lookup ([#28](https://github.com/watanabe-1/github-actions-common/issues/28)) ([4401e4d](https://github.com/watanabe-1/github-actions-common/commit/4401e4d05ec282b419facefbb6f620396da9fa0a))
+
 ## [1.2.1](https://github.com/watanabe-1/github-actions-common/compare/v1.2.0...v1.2.1) (2026-11-14)
 
 
