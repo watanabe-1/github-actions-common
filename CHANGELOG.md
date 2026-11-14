@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.4](https://github.com/watanabe-1/github-actions-common/compare/v1.2.3...v1.2.4) (2026-11-14)
+
+
+### Maintenance
+
+* **deps:** Track GitHub CLI extension pins with Renovate ([#32](https://github.com/watanabe-1/github-actions-common/issues/32)) ([3edd2bf](https://github.com/watanabe-1/github-actions-common/commit/3edd2bf39b70af5b01ccee1cab68341780a4bc33))
+
 ## [1.2.3](https://github.com/watanabe-1/github-actions-common/compare/v1.2.2...v1.2.3) (2026-11-14)
 
 
