@@ -68,6 +68,10 @@ base branch, GitHub App author, and `autorelease: pending` label. The separate
 with squash merging and an expected head SHA. GitHub waits for the repository's
 required checks and reviews; no branch protection bypass is used.
 
+PR discovery uses the pull request list REST API instead of search, whose index can
+lag immediately after PR creation. If Release Please reports creating a PR but the
+workflow cannot find it, the job fails instead of silently skipping approval.
+
 When the Release PR merges, its main CI run calls Release Please again. It then:
 
 1. creates the GitHub Release

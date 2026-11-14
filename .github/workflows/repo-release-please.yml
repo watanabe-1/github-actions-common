@@ -51,15 +51,32 @@ jobs:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
           GH_REPO: ${{ github.repository }}
           APP_BOT: ${{ steps.app-token.outputs.app-slug }}[bot]
+          PRS_CREATED: ${{ steps.release.outputs.prs_created }}
         run: |
           set -euo pipefail
-          # Query even if Release Please left an existing PR unchanged, so retries work.
-          release_pr="$(gh pr list \
-            --state open --base main \
-            --head release-please--branches--main--components--github-actions-common \
-            --author "$APP_BOT" --label 'autorelease: pending' --limit 1 \
-            --json number,headRefOid --jq '.[] | [.number, .headRefOid] | @tsv')"
-          read -r number sha <<< "$release_pr"
+          # The search index can lag behind PR creation. Read the PR list API directly.
+          # Query unchanged PRs too, so reruns can retry approval and auto-merge.
+          candidates="$(gh api --method GET "repos/${GH_REPO}/pulls" \
+            -f state=open -f base=main \
+            -f head="${GH_REPO%%/*}:release-please--branches--main--components--github-actions-common" \
+            -f per_page=100 --paginate \
+            --jq '.[] | [.number, .head.sha, .user.login, ([.labels[].name] | index("autorelease: pending") != null)] | @tsv')"
+          number=''
+          sha=''
+          while IFS=$'\t' read -r candidate_number candidate_sha author pending; do
+            if [[ "$author" == "$APP_BOT" && "$pending" == true ]]; then
+              if [[ -n "$number" ]]; then
+                echo '::error::Multiple matching Release PRs found.'
+                exit 1
+              fi
+              number="$candidate_number"
+              sha="$candidate_sha"
+            fi
+          done <<< "$candidates"
+          if [[ -z "$number" && "$PRS_CREATED" == true ]]; then
+            echo '::error::Release Please created a PR, but it could not be found for approval.'
+            exit 1
+          fi
           echo "number=$number" >> "$GITHUB_OUTPUT"
           echo "sha=$sha" >> "$GITHUB_OUTPUT"
 
