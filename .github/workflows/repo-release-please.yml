@@ -2,6 +2,11 @@ name: Release Please
 
 on:
   workflow_call:
+    secrets:
+      RENOVATE_APP_ID:
+        required: true
+      RENOVATE_PRIVATE_KEY:
+        required: true
 
 permissions: {}
 

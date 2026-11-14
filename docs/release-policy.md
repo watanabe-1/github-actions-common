@@ -96,7 +96,10 @@ The existing version history, currently starting from `v1.0.0`, is preserved.
 ### Authentication and repository settings
 
 The release job reuses the existing `renovate` environment's `RENOVATE_APP_ID` and
-`RENOVATE_PRIVATE_KEY` secrets. It requests an app token limited to this repository
+`RENOVATE_PRIVATE_KEY` secrets. The calling workflow explicitly passes both secret
+names, and the reusable workflow declares them as required. Keep this mapping even
+when the secrets exist only in the environment; the job's `environment: renovate`
+selects their values. It requests an app token limited to this repository
 with Contents, Pull requests, and Issues write permissions. Using the app for PR creation
 and merging allows Release PR checks and the post-merge main workflow to run; the default
 `GITHUB_TOKEN` would suppress those follow-up workflows.

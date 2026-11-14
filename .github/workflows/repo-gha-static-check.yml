@@ -55,6 +55,9 @@ jobs:
     needs: [actions-lock, gha-static-check]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     uses: $/.github/workflows/repo-release-please.yml
+    secrets:
+      RENOVATE_APP_ID: ${{ secrets.RENOVATE_APP_ID }}
+      RENOVATE_PRIVATE_KEY: ${{ secrets.RENOVATE_PRIVATE_KEY }}
     permissions:
       contents: read
       pull-requests: write
