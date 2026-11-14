@@ -100,7 +100,10 @@ The release job reuses the existing `renovate` environment's `RENOVATE_APP_ID` a
 names, and the reusable workflow declares them as required. Keep this mapping even
 when the secrets exist only in the environment; the job's `environment: renovate`
 selects their values. It requests an app token limited to this repository
-with Contents, Pull requests, and Issues write permissions. Using the app for PR creation
+with Contents, Workflows, Pull requests, and Issues write permissions. Workflows write
+is needed when creating a release whose target commit has workflow files that differ
+from the current default branch, including retries of older pending releases. The app
+installation must have these permissions approved. Using the app for PR creation
 and merging allows Release PR checks and the post-merge main workflow to run; the default
 `GITHUB_TOKEN` would suppress those follow-up workflows.
 

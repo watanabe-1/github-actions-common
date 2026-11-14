@@ -33,6 +33,7 @@ jobs:
           private-key: ${{ secrets.RENOVATE_PRIVATE_KEY }}
           repositories: ${{ github.event.repository.name }}
           permission-contents: write
+          permission-workflows: write # Release tags can target commits with different workflow files.
           permission-pull-requests: write
           permission-issues: write
 
