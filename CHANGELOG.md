@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.5](https://github.com/watanabe-1/github-actions-common/compare/v1.2.4...v1.2.5) (2026-11-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency reviewdog/reviewdog to v0.21.3 ([#34](https://github.com/watanabe-1/github-actions-common/issues/34)) ([68d54d7](https://github.com/watanabe-1/github-actions-common/commit/68d54d75197d0771e1e0889e498432b2b0de8f27))
+
 ## [1.2.4](https://github.com/watanabe-1/github-actions-common/compare/v1.2.3...v1.2.4) (2026-11-14)
 
 
