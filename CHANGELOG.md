@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.6](https://github.com/watanabe-1/github-actions-common/compare/v1.2.5...v1.2.6) (2026-11-19)
+
+
+### Bug Fixes
+
+* **deps:** Bump renovatebot/github-action ([#36](https://github.com/watanabe-1/github-actions-common/issues/36)) ([09575c9](https://github.com/watanabe-1/github-actions-common/commit/09575c9ff212b69e5afc15b7c0872cf8af9a512c))
+* **deps:** update dependency nodejs/node to v26.13.1 ([#37](https://github.com/watanabe-1/github-actions-common/issues/37)) ([8ee6b04](https://github.com/watanabe-1/github-actions-common/commit/8ee6b04e45ea3ed2daed2e99aff8dd0062f6a578))
+
 ## [1.2.5](https://github.com/watanabe-1/github-actions-common/compare/v1.2.4...v1.2.5) (2026-11-15)
 
 
