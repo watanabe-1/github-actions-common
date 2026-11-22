@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.7](https://github.com/watanabe-1/github-actions-common/compare/v1.2.6...v1.2.7) (2026-11-22)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#39](https://github.com/watanabe-1/github-actions-common/issues/39)) ([6a28bd3](https://github.com/watanabe-1/github-actions-common/commit/6a28bd3f199d14e34db4661748fbfe42efa95e10))
+
 ## [1.2.6](https://github.com/watanabe-1/github-actions-common/compare/v1.2.5...v1.2.6) (2026-11-19)
 
 
