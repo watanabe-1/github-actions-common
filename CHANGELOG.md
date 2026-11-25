@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.10](https://github.com/watanabe-1/github-actions-common/compare/v1.2.9...v1.2.10) (2026-11-25)
+
+
+### Bug Fixes
+
+* **ci:** Merge release PR after required checks ([#46](https://github.com/watanabe-1/github-actions-common/issues/46)) ([05bcebf](https://github.com/watanabe-1/github-actions-common/commit/05bcebf6d71c2d1e875449277e9704a790091f96))
+
 ## [1.2.9](https://github.com/watanabe-1/github-actions-common/compare/v1.2.8...v1.2.9) (2026-11-25)
 
 
