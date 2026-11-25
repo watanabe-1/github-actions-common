@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.9](https://github.com/watanabe-1/github-actions-common/compare/v1.2.8...v1.2.9) (2026-11-25)
+
+
+### Bug Fixes
+
+* **deps:** Bump renovatebot/github-action ([#43](https://github.com/watanabe-1/github-actions-common/issues/43)) ([eb6c56c](https://github.com/watanabe-1/github-actions-common/commit/eb6c56c32e707f2955a34748f1ed92b1625990f3))
+* **deps:** update all non-major dependencies ([#44](https://github.com/watanabe-1/github-actions-common/issues/44)) ([bfe9631](https://github.com/watanabe-1/github-actions-common/commit/bfe9631ba2a5568f77f985081d1471fd886b6e9e))
+
 ## [1.2.8](https://github.com/watanabe-1/github-actions-common/compare/v1.2.7...v1.2.8) (2026-11-24)
 
 
