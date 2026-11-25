@@ -55,7 +55,7 @@ jobs:
         run: |
           set -euo pipefail
           # The search index can lag behind PR creation. Read the PR list API directly.
-          # Query unchanged PRs too, so reruns can retry approval and auto-merge.
+          # Query unchanged PRs too, so reruns can retry approval.
           candidates="$(gh api --method GET "repos/${GH_REPO}/pulls" \
             -f state=open -f base=main \
             -f head="${GH_REPO%%/*}:release-please--branches--main--components--github-actions-common" \
@@ -87,15 +87,6 @@ jobs:
           GH_REPO: ${{ github.repository }}
           PR_NUMBER: ${{ steps.release-pr.outputs.number }}
         run: gh pr review "$PR_NUMBER" --approve
-
-      - name: Enable GitHub auto-merge
-        if: steps.release-pr.outputs.number != ''
-        env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
-          GH_REPO: ${{ github.repository }}
-          PR_NUMBER: ${{ steps.release-pr.outputs.number }}
-          PR_SHA: ${{ steps.release-pr.outputs.sha }}
-        run: gh pr merge "$PR_NUMBER" --auto --squash --match-head-commit "$PR_SHA"
 
       - name: Update moving major tag
         if: ${{ steps.release.outputs.release_created }}

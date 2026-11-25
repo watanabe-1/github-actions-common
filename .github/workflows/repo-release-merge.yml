@@ -1,0 +1,82 @@
+name: Merge release PR
+
+on:
+  workflow_run: # zizmor: ignore[dangerous-triggers] Only trusted API data is read; PR code and artifacts are never executed.
+    workflows: [GHA static checks, autofix.ci]
+    types: [completed]
+    branches: [release-please--branches--main--components--github-actions-common]
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+
+permissions: {}
+
+# There is only one Release Please branch for main. Each run re-reads the PR,
+# including when GitHub replaces an older pending run with a newer one.
+concurrency:
+  group: release-pr-merge
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    if: github.repository == 'watanabe-1/github-actions-common' && (github.event_name != 'workflow_run' || github.event.workflow_run.event == 'pull_request')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment: renovate
+    permissions:
+      contents: read
+    steps:
+      - name: Create release app token
+        id: app-token
+        uses: actions/create-github-app-token@v3.3.0
+        with:
+          client-id: ${{ secrets.RENOVATE_APP_ID }}
+          private-key: ${{ secrets.RENOVATE_PRIVATE_KEY }}
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+          permission-pull-requests: write
+
+      - name: Merge ready release PR
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_REPO: ${{ github.repository }}
+          APP_BOT: ${{ steps.app-token.outputs.app-slug }}[bot]
+        run: |
+          set -euo pipefail
+          merge_failed=false
+          for attempt in {1..6}; do
+            candidates="$(gh api --method GET "repos/${GH_REPO}/pulls" \
+              -f state=open -f base=main \
+              -f head="${GH_REPO%%/*}:release-please--branches--main--components--github-actions-common" \
+              -f per_page=100 --paginate | jq -r --arg bot "$APP_BOT" \
+              '.[] | select(.user.login == $bot and any(.labels[]; .name == "autorelease: pending")) | .number')"
+            if [[ -z "$candidates" ]]; then
+              echo 'No matching open release PR.'
+              exit 0
+            fi
+            if [[ "$candidates" == *$'\n'* ]]; then
+              echo '::error::Multiple matching release PRs found.'
+              exit 1
+            fi
+            pr="$(gh pr view "$candidates" --json state,headRefOid,reviewDecision,mergeStateStatus,statusCheckRollup)"
+            sha="$(jq -r '.headRefOid' <<< "$pr")"
+            if jq -e '
+              .state == "OPEN" and .reviewDecision == "APPROVED" and .mergeStateStatus == "CLEAN" and
+              (["gha-static-check / GHA static checks status check", "autofix / Autofix"] | all(. as $name |
+                any($pr.statusCheckRollup[]; .name == $name and .status == "COMPLETED" and .conclusion == "SUCCESS")))
+            ' --argjson pr "$pr" <<< "$pr" >/dev/null; then
+              if gh pr merge "$candidates" --squash --match-head-commit "$sha"; then
+                exit 0
+              fi
+              merge_failed=true
+              echo 'Merge was rejected; refreshing the PR before retrying.'
+            else
+              echo 'Release PR is not ready; refreshing its status.'
+            fi
+            if [[ "$attempt" != 6 ]]; then sleep 10; fi
+          done
+          if [[ "$merge_failed" == true ]]; then
+            echo '::error::Release PR merge failed; the next event or scheduled run will retry.'
+            exit 1
+          fi
+          echo '::warning::Release PR is not ready or could not be merged; the next event or scheduled run will retry.'

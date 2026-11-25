@@ -64,9 +64,14 @@ When unreleased conventional commits exist, it creates or updates a Release PR.
 The workflow finds the Release PR by its exact branch
 (`release-please--branches--main--components--github-actions-common`),
 base branch, GitHub App author, and `autorelease: pending` label. The separate
-`github-actions[bot]` identity approves it, then the app enables GitHub auto-merge
-with squash merging and an expected head SHA. GitHub waits for the repository's
-required checks and reviews; no branch protection bypass is used.
+`github-actions[bot]` identity approves it. After either PR check workflow completes,
+`repo-release-merge.yml` re-reads the release PR and checks both required status
+checks, approval, and merge readiness before the app squash-merges it with an
+expected head SHA. The merge remains subject to GitHub's rules; no bypass is used.
+Merge runs are serialized for the single release branch and always re-read the PR.
+A scheduled hourly run and manual dispatch recover from missed events or delays.
+The job retries briefly when checks or GitHub's merge decision are still settling;
+failed checks and missing approvals are never bypassed.
 
 PR discovery uses the pull request list REST API instead of search, whose index can
 lag immediately after PR creation. If Release Please reports creating a PR but the
@@ -114,7 +119,7 @@ and merging allows Release PR checks and the post-merge main workflow to run; th
 
 The separate default `GITHUB_TOKEN` is used only to read contents and approve the app's
 Release PR. Keep "Allow GitHub Actions to create and approve pull requests" enabled,
-along with "Allow auto-merge" and squash merging. Keep required checks configured on
+along with squash merging. Keep required checks configured on
 `main`; if code owner approval is required for these files, that requirement must also
 be satisfied by an eligible reviewer. The environment must permit deployments from `main`
 without manual approval to keep the flow unattended. Tag rules must permit the app to
