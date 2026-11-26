@@ -28,7 +28,7 @@ GitHub CLI is versioned in `aqua/aqua.yaml`. To set up the extension locally:
 
 ```powershell
 gh auth login --hostname github.com
-gh extension install github/gh-actions-lock --pin v0.4.1
+gh extension install github/gh-actions-lock --pin v0.5.0
 ```
 
 After adding or changing action dependencies, regenerate and verify the lockfile:
