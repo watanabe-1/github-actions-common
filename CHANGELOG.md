@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.12](https://github.com/watanabe-1/github-actions-common/compare/v1.2.11...v1.2.12) (2026-11-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency github/gh-actions-lock to v0.5.1 ([#50](https://github.com/watanabe-1/github-actions-common/issues/50)) ([0c6a79a](https://github.com/watanabe-1/github-actions-common/commit/0c6a79a3e1d25bc4d0796f15025e88be0324b936))
+
 ## [1.2.11](https://github.com/watanabe-1/github-actions-common/compare/v1.2.10...v1.2.11) (2026-11-26)
 
 
