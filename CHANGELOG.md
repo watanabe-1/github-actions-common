@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.13](https://github.com/watanabe-1/github-actions-common/compare/v1.2.12...v1.2.13) (2026-11-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency aquaproj/aqua-registry to v4.590.0 ([#52](https://github.com/watanabe-1/github-actions-common/issues/52)) ([907834b](https://github.com/watanabe-1/github-actions-common/commit/907834b4553d40400204cb05365cfd29fd1bb906))
+
 ## [1.2.12](https://github.com/watanabe-1/github-actions-common/compare/v1.2.11...v1.2.12) (2026-11-27)
 
 
